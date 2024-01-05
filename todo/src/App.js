@@ -37,6 +37,15 @@ function App() {
     }
   };
 
+  const toggle = (todo) => {
+    setTodos(
+      todos.map((obj) =>
+        obj.id === todo.id ? { ...obj, checked: !todo.checked } : obj
+      )
+    );
+    console.log('toggle', todos);
+  };
+
   return (
     <section id="app" className="container">
       <header>
@@ -53,8 +62,23 @@ function App() {
         <ul className="todo-list">
           {todos.map((todo) => (
             <li key={todo.id.toString()}>
-              <span className="todo">{todo.title}</span>
-              <button type="button" className="remove">
+              <span
+                className={`todo ${todo.checked ? `checked` : ''}`}
+                onClick={() => toggle(todo)}
+                onKeyPress={() => toggle(todo)}
+                role="button"
+                // label="Checked"
+                tabIndex={0}
+              >
+                {todo.title}
+              </span>
+              <button
+                type="button"
+                className="remove"
+                label="Remove button"
+                // onKeyPress={() => toggle(todo)}
+                // role="button"
+              >
                 <MdDelete size={28} />
               </button>
             </li>
