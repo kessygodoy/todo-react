@@ -46,6 +46,11 @@ function App() {
     console.log('toggle', todos);
   };
 
+  const onRemove = (todo) => {
+    console.log('remove', todo);
+    setTodos(todos.filter((obj) => obj.id !== todo.id)); // filtra o array e retorna os que sao diferentes do que foi passado
+  };
+
   return (
     <section id="app" className="container">
       <header>
@@ -76,6 +81,7 @@ function App() {
                 type="button"
                 className="remove"
                 label="Remove button"
+                onClick={() => onRemove(todo)}
                 // onKeyPress={() => toggle(todo)}
                 // role="button"
               >
