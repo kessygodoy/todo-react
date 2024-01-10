@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { MdDelete } from 'react-icons/md';
 
 import NewTodo from './components/NewTodo';
+import TodoList from './components/TodoList';
 
 import './App.css';
 
@@ -36,36 +36,16 @@ function App() {
       </header>
       <section className="main">
         <NewTodo onNewTodo={onNewTodo} />
-
-        <ul className="todo-list">
-          {todos.map((todo) => (
-            <li key={todo.id.toString()}>
-              <span
-                className={`todo ${todo.checked ? `checked` : ''}`}
-                onClick={() => toggle(todo)}
-                onKeyPress={() => toggle(todo)}
-                role="button"
-                // label="Checked"
-                tabIndex={0}
-              >
-                {todo.title}
-              </span>
-              <button
-                type="button"
-                className="remove"
-                label="Remove button"
-                onClick={() => onRemove(todo)}
-                // onKeyPress={() => toggle(todo)}
-                // role="button"
-              >
-                <MdDelete size={28} />
-              </button>
-            </li>
-          ))}
-        </ul>
+        <TodoList todos={todos} onToggle={onToggle} onRemove={onRemove} />
       </section>
     </section>
   );
+}
+
+TodoList.PropTypes = {
+  todos: ,
+  onToggle: PropTypes.func.isRequired,
+  onRemove: PropTypes.func.isRequired,
 }
 
 export default App;

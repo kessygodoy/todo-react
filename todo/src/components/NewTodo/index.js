@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 function NewTodo({ onNewTodo }) {
   const [value, setValue] = useState('');
@@ -41,5 +42,9 @@ function NewTodo({ onNewTodo }) {
     />
   );
 }
+
+NewTodo.PropTypes = {
+  onNewTodo: PropTypes.func.isRequired,
+};
 
 export default NewTodo;
